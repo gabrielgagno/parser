@@ -81,7 +81,7 @@ class MetaParser
         }
 
         foreach($sampArray as $sArray) {
-            $file = fopen($sampArray, 'r');
+            $file = fopen($sArray, 'r');
             $data = fgetcsv($file);
             while(!feof($file)) {
                 $actual = null;
