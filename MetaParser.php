@@ -98,7 +98,7 @@ class MetaParser
                 while($row = mysqli_fetch_assoc($results)) {
                     echo "ROW ID: ".$row['id']."\n";
                     echo "DATA: ".$data[0]."\n\n";
-                    $update = "update webpage set aq_md_searchstring='$data[0]' where id like '".$row['id']."'";
+                    $update = "update webpage set aq_md_searchstring='$data[0]' where id like '%".$row['id']."%'";
                     $conn->query($update);
                 }
             }
