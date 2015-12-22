@@ -93,7 +93,7 @@ class MetaParser
                     $actual = str_replace('https://', '', $data[1]);
                 }
                 echo $actual;
-                $statement = "select id from webpage where baseUrl like %$actual%";
+                $statement = "select id from webpage where baseUrl like '%$actual%'";
                 $results = $conn->query($statement);
                 while($row = $results->fetch_assoc()) {
                     $update = "update webpage set aq_md_searchstring='$data[0]' where id='".$row['id']."'";
