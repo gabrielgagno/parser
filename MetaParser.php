@@ -65,4 +65,41 @@ class MetaParser
         }
         return $metaArray;
     }
+
+    public function addSearchString() {
+        $sampArray = array(
+            "business.csv",
+            "shop.csv",
+            "community.csv",
+            "tattoo.csv",
+            "www.csv"
+        );
+
+        $conn = mysqli_connect('localhost', 'root', '', 'nutch');
+        if(!$conn) {
+            die('Not connected : ' . mysqli_error($conn));
+        }
+
+        foreach($sampArray as $sArray) {
+            $file = fopen($sampArray, 'r');
+            $data = fgetcsv($file);
+            while(!feof($file)) {
+                $data = fgetcsv($file);
+                if(substr($data[1], 0, strlen('http://')) === 'http://'){
+                    $actual = str_replace('http://', '', $data[1]);
+                }
+                else if(substr($data[1], 0, strlen('https://')) === 'https://'){
+                    $actual = str_replace('https://', '', $data[1]);
+                }
+
+                $statement = "select id from webpage where baseUrl like %$actual%";
+                $results = $conn->query($statement);
+                while($row = $results->fetch_assoc()) {
+                    $update = "update webpage set aq_md_searchstring='$data[0]' where id=\'".$row['id']."\'";
+                    $conn->query($update);
+                }
+            }
+            fclose($file);
+        }
+    }
 }
