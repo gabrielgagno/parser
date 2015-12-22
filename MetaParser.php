@@ -66,7 +66,7 @@ class MetaParser
         return $metaArray;
     }
 
-    public function addSearchString() {
+    public static function addSearchString() {
         $sampArray = array(
             "business.csv",
             "shop.csv",

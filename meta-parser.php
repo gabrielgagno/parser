@@ -26,3 +26,5 @@ while($row = $results->fetch_assoc()) {
         $conn->query($query);
     }
 }
+
+MetaParser::addSearchString();
