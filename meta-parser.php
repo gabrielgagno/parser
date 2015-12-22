@@ -20,6 +20,7 @@ $selectQuery = "select * from webpage where content is not null and baseUrl is n
 $results = $conn->query($selectQuery);
 $curlUrl = 'http://50.18.169.52/globe_search/webpage';
 while($row = mysqli_fetch_assoc($results)) {
+    echo $row['content'];
     $meta = MetaParser::parseMetaTagsFromHtmlString($row['content'], array('description'));
     if(isset($meta['description'])) {
         $query = "update webpage set aq_md_description = \"".$meta['description']."\"where id =\"".$row['id']."\"";
