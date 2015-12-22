@@ -95,7 +95,7 @@ class MetaParser
                 echo $actual;
                 $statement = "select id from webpage where baseUrl like '%$actual%'";
                 $results = $conn->query($statement);
-                while($row = $results->fetch_assoc()) {
+                while($row = mysqli_fetch_assoc($results)) {
                     echo "ROW ID: ".$row['id'];
                     $update = "update webpage set aq_md_searchstring='$data[0]' where id='".$row['id']."'";
                     $conn->query($update);
