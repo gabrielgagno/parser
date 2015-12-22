@@ -84,6 +84,7 @@ class MetaParser
             $file = fopen($sampArray, 'r');
             $data = fgetcsv($file);
             while(!feof($file)) {
+                $actual = null;
                 $data = fgetcsv($file);
                 if(substr($data[1], 0, strlen('http://')) === 'http://'){
                     $actual = str_replace('http://', '', $data[1]);
@@ -91,7 +92,7 @@ class MetaParser
                 else if(substr($data[1], 0, strlen('https://')) === 'https://'){
                     $actual = str_replace('https://', '', $data[1]);
                 }
-
+                echo $actual;
                 $statement = "select id from webpage where baseUrl like %$actual%";
                 $results = $conn->query($statement);
                 while($row = $results->fetch_assoc()) {
