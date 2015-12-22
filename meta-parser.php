@@ -15,7 +15,7 @@ $conn = mysqli_connect('localhost', 'root', '', 'nutch');
 if(!$conn) {
     die('Not connected : ' . mysqli_error($conn));
 }
-$selectQuery = "select * from webpage where content is not null and baseUrl is not null and content is not null";
+$selectQuery = "select * from webpage where content is not null and baseUrl is not null";
 
 $results = $conn->query($selectQuery);
 $curlUrl = 'http://50.18.169.52/globe_search/webpage';
