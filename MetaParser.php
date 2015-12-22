@@ -79,6 +79,7 @@ class MetaParser
         if(!$conn) {
             die('Not connected : ' . mysqli_error($conn));
         }
+        $conn->autocommit(true);
 
         foreach($sampArray as $sArray) {
             $file = fopen($sArray, 'r');
